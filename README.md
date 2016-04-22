@@ -1,7 +1,7 @@
-passport-mongo
+Cronosync
 ==============
 
-This repository serves as an example of a basic Node.js application which is using [Passport](http://passportjs.org/) as the authentication middleware for authenticating against a locally configured Mongo backend
+A Node app to synchronise Facebook events with your Calendar using the Cronofy API - doesn't actually work yet!
 
 Steps to run the app
 =====================
@@ -10,4 +10,4 @@ Steps to run the app
 
 Perquisites
 ============
-The server assumes that you have a local mongo instance running. This means if you have mongo installed locally, all you need to do is configure the db.js file correctly and run the mongod daemon
+The server assumes that you have a local mongo instance running. This means if you have mongo installed locally, all you need to do is configure the environment variables (see db.js) correctly and run the mongod daemon
