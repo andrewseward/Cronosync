@@ -5,10 +5,16 @@ block content
 		div.row
 			div.col-sm-6.col-md-4.col-md-offset-4
 				#user
-					h1.text-center.login-title Welcome #{user.firstName}. Check your details below:
+					h1.text-center.login-title Welcome to Cronosync!
 						div.signup-wall
-							ul.user-details
-								li Email    ---> #{user.fb.email}
-								li First Name ---> #{user.fb.firstName} 
-								li Last Name ---> #{user.fb.lastName}
+							div
+								img(src='#{profileImageUrl}')
+							div
+								ul.user-details
+									li #{user.fb.displayName}
+		div.row
+			div.col-sm-6.col-md-4.col-md-offset-4
+				a(href='/login/cronofy', class='btn btn-block btn-social btn-facebook') Connect your Calendar with Cronofy
+		div.row
+			div.col-sm-6.col-md-4.col-md-offset-4
 						a(href='/signout', class='text-center new-account') Sign Out

@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var homeController = require('../controllers/home.js');
 
 var isAuthenticated = function (req, res, next) {
 	// if user is authenticated in the session, call the next() to call the next request handler 
@@ -26,17 +27,28 @@ module.exports = function(passport){
 	));
 	 
 	// handle the callback after facebook has authenticated the user
-	router.get('/login/facebook/callback',
+	router.get('/login/facebook/callback', 
 	  passport.authenticate('facebook', {
 	    successRedirect : '/home',
 	    failureRedirect : '/'
 	  })
 	);
 
+
+
+
+	router.get('/login/cronofy',
+	  passport.authorize('cronofy', { scope : ['read_account','list_calendars','read_events','create_event','delete_event'] }));
+
+	router.get('/login/cronofy/callback',
+	  passport.authorize('cronofy', { failureRedirect: '/' }),
+	  function(req, res) {
+	    // Successful authorization, redirect home.
+	    res.redirect('/home');
+	  });
+
 	/* GET Home Page */
-	router.get('/home', isAuthenticated, function(req, res){
-		res.render('home', { user: req.user });
-	});
+	router.get('/home', isAuthenticated, homeController.home);
 
 	/* Handle Logout */
 	router.get('/signout', function(req, res) {

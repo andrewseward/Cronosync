@@ -1,4 +1,5 @@
 var facebook = require('./facebook');
+var cronofy = require('./cronofy');
 var User = require('../models/user');
 
 module.exports = function(passport){
@@ -9,7 +10,7 @@ module.exports = function(passport){
         done(null, user._id);
     });
 
-    passport.deserializeUser(function(id, done) {
+    passport.deserializeUser(function(req, id, done) {
         User.findById(id, function(err, user) {
             console.log('deserializing user:',user);
             done(err, user);
@@ -18,5 +19,5 @@ module.exports = function(passport){
 
     // Setting up Passport Strategies for Login and SignUp/Registration
     facebook(passport);
-
+    cronofy(passport);
 }

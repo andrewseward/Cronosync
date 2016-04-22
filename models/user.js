@@ -2,10 +2,19 @@
 var mongoose = require('mongoose');
 
 module.exports = mongoose.model('User',{
-	id: String,
-	username: String,
-	password: String,
-	email: String,
-	firstName: String,
-	lastName: String
+	_id: String,
+	fb: {
+		id: String,
+		access_token: String,
+		refresh_token: String,
+		displayName: String,
+		firstName: String,
+		lastName: String,
+		email: String
+	},
+	cronofy: {
+		access_token: String,
+		refresh_token: String
+	}
+	
 });
