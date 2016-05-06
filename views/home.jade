@@ -1,11 +1,10 @@
 extends layout
-
 block content
 	div.container
 		div.row
 			div.col-sm-6.col-md-4.col-md-offset-4
 				#user
-					h1.text-center.login-title Welcome to Cronosync!
+					h1 Welcome to Cronosync!
 						div.signup-wall
 							div
 								img(src='#{profileImageUrl}')
@@ -17,4 +16,26 @@ block content
 				a(href='/login/cronofy', class='btn btn-block btn-social btn-facebook') Connect your Calendar with Cronofy
 		div.row
 			div.col-sm-6.col-md-4.col-md-offset-4
+				ul
+					each profile in calendarProfiles.profiles
+						li= profile.profile_name
+							ul
+								each calendar in profile.calendars
+									li= calendar.calendar_name
+									if calendar.synced
+										button(type="button" name=calendar.calendar_id, value="Unsync" class="btn btn-primary" data-loading-text="Loading...") Unsync
+									else
+										button(type="button" name=calendar.calendar_id, value="Sync" class="btn btn-primary" data-loading-text="Loading...") Sync
+		div.row
+			div.col-sm-6.col-md-4.col-md-offset-4
 						a(href='/signout', class='text-center new-account') Sign Out
+	script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js')
+	script(type='text/javascript' src='/javascript/main.js')
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>

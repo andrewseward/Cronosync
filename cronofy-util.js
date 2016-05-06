@@ -5,13 +5,9 @@ exports.getAccessToken = function(user, callback){
 	if (user.cronofy.access_token){
 		cronofy.accountInformation({access_token:user.cronofy.access_token}, function(err,res){
 			if ((err) && (err.status.code=='401')){
-				refresh.requestNewAccessToken('cronofy', user.cronofy.refreshToken, function(accessTokenErr, newAccessToken, newRefreshToken) {
-					
-		 			if ((accessTokenErr) && (accessTokenErr.status.code=='401')){
-						exports.removeCronofyKeys(user);
-						
-		 			}
-					process.nextTick(function(){
+				refresh.requestNewAccessToken('cronofy', user.cronofy.refresh_token, function(accessTokenErr, newAccessToken, newRefreshToken) {
+		 			exports.updateCronofyKeys(user,newAccessToken,newRefreshToken);
+		 			process.nextTick(function(){
 						callback(newAccessToken);
 					});
 				});
@@ -39,4 +35,20 @@ exports.removeCronofyKeys = function(user){
         if (err)
             throw err;
     });
+}
+
+exports.updateCronofyKeys = function(user, accessToken, refreshToken){
+	process.nextTick(function() {
+        if (user) {
+        	// update the current users facebook credentials
+            user.cronofy.access_token = accessToken;
+            user.cronofy.refresh_token = refreshToken;
+
+            // save the user
+            user.save(function(err) {
+                if (err)
+                    throw err;
+            });
+		}
+	})
 }

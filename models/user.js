@@ -14,7 +14,9 @@ module.exports = mongoose.model('User',{
 	},
 	cronofy: {
 		access_token: String,
-		refresh_token: String
+		refresh_token: String,
+		synced_calendar_ids: [String]
 	}
 	
 });
+

@@ -12,7 +12,6 @@ module.exports = function(passport) {
 	    passReqToCallback: true
 	  },
 	    function(req, access_token, refresh_token, profile, done) {
-	    	console.log('Cronofy auth ok!');
 	    	//console.log('profile', profile);
 	    	//console.log('access_token', access_token);
 	    	//console.log('refresh_token', refresh_token);

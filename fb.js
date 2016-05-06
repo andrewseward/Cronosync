@@ -2,5 +2,6 @@
 module.exports = {
   'appID' : process.env.CS_FACEBOOK_APP_ID,
   'appSecret' : process.env.CS_FACEBOOK_APP_SECRET,
-  'callbackUrl' : process.env.CS_FACEBOOK_CALLBACK_URL
+  'callbackUrl' : process.env.CS_FACEBOOK_CALLBACK_URL,
+  'verificationToken' : process.env.CS_FACEBOOK_VERIFICATION_TOKEN
 }

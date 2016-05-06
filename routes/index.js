@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var homeController = require('../controllers/home.js');
+var setCalendarController = require('../controllers/setcalendar.js');
+var webhooks = require('../controllers/webhooks.js');
 
 var isAuthenticated = function (req, res, next) {
 	// if user is authenticated in the session, call the next() to call the next request handler 
@@ -23,14 +25,14 @@ module.exports = function(passport){
 	// route for facebook authentication and login
 	// different scopes while logging in
 	router.get('/login/facebook', 
-	  passport.authenticate('facebook', { scope : 'email' }
+	  passport.authenticate('facebook', { scope : ['email','user_events','rsvp_event'] }
 	));
 	 
 	// handle the callback after facebook has authenticated the user
 	router.get('/login/facebook/callback', 
 	  passport.authenticate('facebook', {
 	    successRedirect : '/home',
-	    failureRedirect : '/'
+	    failureRedirect : '/' 
 	  })
 	);
 
@@ -49,6 +51,7 @@ module.exports = function(passport){
 
 	/* GET Home Page */
 	router.get('/home', isAuthenticated, homeController.home);
+	router.post('/setcalendar', isAuthenticated, setCalendarController.set);
 
 	/* Handle Logout */
 	router.get('/signout', function(req, res) {
@@ -56,6 +59,9 @@ module.exports = function(passport){
 		res.redirect('/');
 	});
 
+	router.post('/webhooks/cronofy', webhooks.cronofy);
+	router.post('/webhooks/facebook', webhooks.facebook);
+	router.get('/webhooks/facebook', webhooks.facebook);
 	return router;
 }
 
