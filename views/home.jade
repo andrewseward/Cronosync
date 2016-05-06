@@ -17,15 +17,16 @@ block content
 		div.row
 			div
 				ul
-					each profile in calendarProfiles.profiles
-						li= profile.profile_name
-							ul
-								each calendar in profile.calendars
-									li= calendar.calendar_name
-									if calendar.synced
-										button(type="button" name=calendar.calendar_id, value="Unsync" class="btn btn-primary" data-loading-text="Loading...") Unsync
-									else
-										button(type="button" name=calendar.calendar_id, value="Sync" class="btn btn-primary" data-loading-text="Loading...") Sync
+					if calendarProfiles
+						each profile in calendarProfiles.profiles
+							li= profile.profile_name
+								ul
+									each calendar in profile.calendars
+										li= calendar.calendar_name
+										if calendar.synced
+											button(type="button" name=calendar.calendar_id, value="Unsync" class="btn btn-primary" data-loading-text="Loading...") Unsync
+										else
+											button(type="button" name=calendar.calendar_id, value="Sync" class="btn btn-primary" data-loading-text="Loading...") Sync
 		div.row
 			div
 						a(href='/signout', class='text-center new-account') Sign Out
