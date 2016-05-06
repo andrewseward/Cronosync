@@ -2,7 +2,7 @@ extends layout
 block content
 	div.container
 		div.row
-			div.col-sm-6.col-md-4.col-md-offset-4
+			div
 				#user
 					h1 Welcome to Cronosync!
 						div.signup-wall
@@ -12,10 +12,10 @@ block content
 								ul.user-details
 									li #{user.fb.displayName}
 		div.row
-			div.col-sm-6.col-md-4.col-md-offset-4
+			div
 				a(href='/login/cronofy', class='btn btn-block btn-social btn-facebook') Connect your Calendar with Cronofy
 		div.row
-			div.col-sm-6.col-md-4.col-md-offset-4
+			div
 				ul
 					each profile in calendarProfiles.profiles
 						li= profile.profile_name
@@ -27,7 +27,7 @@ block content
 									else
 										button(type="button" name=calendar.calendar_id, value="Sync" class="btn btn-primary" data-loading-text="Loading...") Sync
 		div.row
-			div.col-sm-6.col-md-4.col-md-offset-4
+			div
 						a(href='/signout', class='text-center new-account') Sign Out
 	script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js')
 	script(type='text/javascript' src='/javascript/main.js')
