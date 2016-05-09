@@ -60,6 +60,8 @@ module.exports = function(passport){
 	});
 
 	router.post('/webhooks/cronofy', webhooks.cronofy);
+	router.post('/webhooks/always400', webhooks.always400);
+	router.post('/webhooks/alwaysslow', webhooks.alwaysSlow);
 	router.post('/webhooks/facebook', webhooks.facebook);
 	router.get('/webhooks/facebook', webhooks.facebook);
 	return router;
