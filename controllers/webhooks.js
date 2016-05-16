@@ -18,7 +18,7 @@ exports.alwaysSlow = function(req, res){
 exports.always400 = function(req, res){
 	console.log("always400 endpoint hit!");
 	console.log(req.body);
-	res.status(400).send();
+	res.status(404).send();
 }
 
 exports.facebook = function(req, res){
